@@ -72,9 +72,9 @@ def main():
     output_file = output_file.replace(":", "-")
     convert_html(input_file, output_file)
 
-    dell_file_path = os.path.join("C:/Users/diestelw/OneDrive - WWT/Scripts/OrcaTweek/",
+    dell_file_path = os.path.join("C:/Users/diestelw/OneDrive - WWT/Scripts/OrcaTweak/",
                                   output_file)
-    orca_template_path = os.path.join("C:/Users/diestelw/OneDrive - WWT/Scripts/OrcaTweek/",
+    orca_template_path = os.path.join("C:/Users/diestelw/OneDrive - WWT/Scripts/OrcaTweak/",
                                       "Quote Import Template.xlsx")
 
     try:
