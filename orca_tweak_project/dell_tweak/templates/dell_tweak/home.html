@@ -4,22 +4,106 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
-    <title>OrcaTweak - Dell</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="theme-color" content="#7952b3">
+    <title>OrcaTweak</title>
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 </head>
 <body>
     {% load static %}
-    <div class="container text-center">
-        <br>
-        {% if dell_file_url %}
-            <p class="alert alert-success">Orca import file at: <a href="{{ dell_file_url }}">{{ dell_file_url }}</a></p>
-        {% endif %}
-        <img src="{% static 'dell_tweak/HTML-to-Excel-Logo.jpg' %}" class="rounded mx-auto d-block">
-        <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            <input type="file" name="myfile" class="btn btn-warning" accept=".html">
-            <button type="submit" class="btn btn-primary">Upload Dell HTML File</button>
-        </form>
-          <p><a href="{% url 'home' %}">Return to home</a></p>
-    </div>
+    <header>
+      <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+          <div class="row">
+            <div class="col-sm-8 col-md-7 py-4">
+              <h4 class="text-white">About</h4>
+              <p class="text-white">Welcome to OrcaTweak, a SalesOps quoting assistant.  Select a supported partner and upload your quote - OrcaTweak will automatically convert the quote into an Orca ready importable spreadsheet then provide a link to download.</p>
+            </div>
+            <div class="col-sm-4 offset-md-1 py-4">
+              <h4 class="text-white">Contact</h4>
+              <ul class="list-unstyled">
+                <li><a href="https://twitter.com/billdies" class="text-white">Twitter</a></li>
+                <li><a href="mailto:billdies@live.com" class="text-white">Email</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container">
+          <a href="{% url 'home' %}" class="navbar-brand d-flex align-items-center">
+            <strong>OrcaTweak</strong>
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+    <main>
+      <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <h1 class="fw-light">Supported Partners</h1>
+            <p class="lead text-muted">Welcome to OrcaTweak, a SalesOps quoting assistant.  Below are the currently supported partners for OrcaTweak.  After reading the partner instructions and uploading your quote you will be provided with a link to download your file.</p>
+          </div>
+        </div>
+      </section>
+      <div class="album py-5 bg-light">
+        <div class="container">
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+            <div class="col">
+              <div class="card shadow-sm">
+                <a href="{% url 'dell' %}"><img src="{% static 'dell_tweak/Dell_Logo.svg.png' %}" height="225" class="rounded mx-auto d-block" alt="Dell"></a>
+                <div class="card-body">
+                  <p class="card-text">Currently, this tool only supports Dell hardware quotes in an HTML format.  The quote number will be extracted and added to the import file.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+
+                    <small class="text-muted">Dell</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <a href="{% url 'dell' %}"><img src="{% static 'dell_tweak/Encore.png' %}" height="225" width="100%" class="rounded mx-auto d-block" alt="Encore Technologies"></a>
+                <div class="card-body">
+                  <p class="card-text">This tool supports Encore quotes in an XLSX format.  The quote number will be extracted and added to the import file.  Manufacturer names will be updated.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">Encore Technologies</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col">
+              <div class="card shadow-sm">
+                <img src="{% static 'dell_tweak/Future.png' %}" height="225" width="100%" class="rounded mx-auto d-block" alt="Future Partners">
+                <div class="card-body">
+                  <p class="card-text">Future partner are always being considered for OrcaTweak.  Please send an internal IM via MS Teams or Webex Teams to request additional partners.</p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">Future Partners</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
 </body>
 </html>

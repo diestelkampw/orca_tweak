@@ -13,6 +13,10 @@ from html2excel import ExcelParser
 
 
 def home(request):
+    return render(request, 'dell_tweak/home.html')
+
+
+def dell(request):
     if request.method == 'POST' and request.FILES['myfile']:
         myfile = request.FILES['myfile']
         fs = FileSystemStorage()
@@ -65,8 +69,8 @@ def home(request):
         os.remove(input_path)
         os.remove(output_path)
 
-        return render(request, 'dell_tweak/home.html', {'dell_file_url': dell_file_url})
-    return render(request, 'dell_tweak/home.html')
+        return render(request, 'dell_tweak/dell.html', {'dell_file_url': dell_file_url})
+    return render(request, 'dell_tweak/dell.html')
 
 
 def convert_html(input_file, output_file):
