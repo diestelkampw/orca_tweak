@@ -5,7 +5,6 @@ import openpyxl
 from openpyxl import Workbook
 import os
 from os.path import exists
-import datetime
 import sys
 import re
 from html2excel import ExcelParser
