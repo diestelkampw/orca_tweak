@@ -137,6 +137,43 @@ def get_quote_num(sheet, partner):
         return sheet['E2'].value
 
 
+def update_manufacturer(name):
+    match name:
+        case 'Planar Systems':
+            manufacturer = 'PLANAR'
+        case 'Chief':
+            manufacturer = 'CHIEF MANUFACTURING'
+        case 'Soundcontrol':
+            manufacturer = 'SOUND CONTROL TECHNOLOGIES'
+        case 'Shure':
+            manufacturer = 'SHURE INCORPORATED'
+        case 'Netgear':
+            manufacturer = 'NETGEAR, INC.'
+        case 'Middle Atlantic':
+            manufacturer = 'MIDDLE ATLANTIC PRODUCTS INC'
+        case 'ADB':
+            manufacturer = 'GENERAL CABLE'
+        case 'SharpNEC':
+            manufacturer = 'NEC COMPUTERS'
+        case 'Extron Electronics':
+            manufacturer = 'ELECTRONICS/RGB SYSTEMS'
+        case 'Blackbox':
+            manufacturer = 'Black Box'
+        case 'Biamp Systems':
+            manufacturer = 'Biamp'
+        case 'Xtreme Power Conversion':
+            manufacturer = 'EXTREME'
+        case 'Chatsworth':
+            manufacturer = 'Chatsworth Products Inc'
+        case 'Samsung':
+            manufacturer = 'Samsung America, Inc'
+        case 'Startech':
+            manufacturer = 'Startech Computer'
+        case _:
+            manufacturer = name
+    return manufacturer
+
+
 def add_dell_data(dell, new_quote, quote_num):
     in_row = False
     grab_data = False
@@ -182,31 +219,14 @@ def add_dell_data(dell, new_quote, quote_num):
 def add_encore_data(encore, new_quote, quote_num):
     vendor = 'Encore Technologies'
     for row in encore.iter_rows(min_row=7, max_col=7, max_row=encore.max_row, values_only=True):
-        print(row[1])
         if row[1] is not None:
             part_number = row[2]
             description = row[3]
             price = row[4]
             quantity = row[5]
-            if row[1] == 'Planar Systems':
-                manufacturer = 'PLANAR'
-            elif row[1] == 'Chief':
-                manufacturer = 'CHIEF MANUFACTURING'
-            elif row[1] == 'Soundcontrol':
-                manufacturer = 'SOUND CONTROL TECHNOLOGIES'
-            elif row[1] == 'Shure':
-                manufacturer = 'SHURE INCORPORATED'
-            elif row[1] == 'Netgear':
-                manufacturer = 'NETGEAR, INC.'
-            elif row[1] == 'Middle Atlantic':
-                manufacturer = 'MIDDLE ATLANTIC PRODUCTS INC'
-            elif row[1] == 'ADB':
-                manufacturer = 'GENERAL CABLE'
-            else:
-                manufacturer = row[1]
+            manufacturer = update_manufacturer(row[1])
             new_row = [part_number, description, '', price, '', quantity, manufacturer, vendor,
                        '', '', '', '', '', '', quote_num]
-            print(new_row)
             new_quote.append(new_row)
         else:
             continue
